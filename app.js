@@ -8,6 +8,7 @@ const mongoose      = require('mongoose');
 const bodyParser    = require('body-parser');
 //const uploadCloud   = require('../config/cloudinary');
 
+
 mongoose
 .connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
@@ -25,6 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
+hbs.registerPartials(__dirname + '/views/partials');
 
 const index = require('./routes/index');
 app.use('/', index);
