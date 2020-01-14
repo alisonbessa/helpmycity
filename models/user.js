@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+
+const { Schema } = mongoose;
 
 const userSchema = new Schema({
-    name: String,
-    email: { type: String, unique: true },
-    password: String,
-    // {
-    //     timestamps: true
-    // },
+  name: String,
+  email: { type: String, unique: true },
+  password: String,
+  // { timestamps: true }
 });
 
 const User = mongoose.model('User', userSchema);
