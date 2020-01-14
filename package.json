@@ -5,7 +5,11 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
+<<<<<<< HEAD
     "start-dev": "nodemon app.js",
+=======
+    "dev": "nodemon app.js",
+>>>>>>> bc154d3b22df7903f9d84776bc1a1619bde1a473
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +23,7 @@
   },
   "homepage": "https://github.com/alisonbessa/helpmycity#readme",
   "dependencies": {
+    "bcrypt": "^3.0.7",
     "body-parser": "^1.19.0",
     "cloudinary": "^1.18.1",
     "dotenv": "^8.2.0",
