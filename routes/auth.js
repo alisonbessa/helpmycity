@@ -25,6 +25,7 @@ router.post('/signup', (req, res, next) => {
 
   //! User verification
 
+
   User.findOne({ email })
   .then(user => {
     if (user !== null) {
@@ -105,13 +106,12 @@ router.get('/edit/:id', (req, res) => {
   
   Report.findById(id)
     .then(report => {
-      //res.send(report);
       res.render('edit', {report});
     })
     .catch(error => next(error))
 });
 
-// POST book edit
+// POST report edit
 router.post('/edit/:id', (req, res, next) => {
   console.log(req.body)
   const { id } = req.params;
@@ -131,5 +131,27 @@ router.post('/edit/:id', (req, res, next) => {
     .catch(error => next(error))
 });
 
+
+
+
+router.get('/edit/:id', (req, res) => {
+  const { id } = req.params;
+  
+  Report.findById(id)
+    .then(report => {
+      res.render('edit', {report});
+    })
+    .catch(error => next(error))
+});
+
+
+router.get('/delete-report/:id', (req, res, next) => {
+  const { id } = req.params;
+  Report.findByIdAndDelete(id)
+    .then(_ => {
+      res.redirect('/auth/dashboard');
+    })
+    .catch(error => next(error))
+});
 
 module.exports = router;

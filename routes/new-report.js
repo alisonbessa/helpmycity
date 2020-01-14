@@ -5,7 +5,7 @@ const Reports = require('../models/reports');
 
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
+router.get('auth/', (req, res, next) => {
     res.render('new-report');
 });
 

@@ -8,5 +8,6 @@
   {{#each reports}}
   <li>{{location.street}} |</li>
     <a href="/auth/edit/{{_id}}">edit</a>
+    <a href="/auth/delete-report?reportId={{_id}}">delete</a></li>
   {{/each}}
 </ul>

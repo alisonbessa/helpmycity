@@ -29,7 +29,7 @@ app.use('/', index);
 const auth = require('./routes/auth');
 app.use('/auth', auth);
 
-// const newReport = require('./routes/new-report');
-// app.use('/new-report', newReport);
+const newReport = require('./routes/new-report');
+app.use('/new-report', newReport);
 
 app.listen(process.env.PORT, console.log(`Listening on port ${process.env.PORT}`));
