@@ -6,7 +6,8 @@ const app           = express();
 const path          = require('path');
 const mongoose      = require('mongoose');
 const bodyParser    = require('body-parser');
-//const uploadCloud   = require('../config/cloudinary');
+
+require("dotenv").config();
 
 mongoose
 .connect(process.env.MONGODB_URI, {
