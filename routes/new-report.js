@@ -8,7 +8,7 @@ router.get('/', (req, res, next) => {
     res.render('new-report');
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', uploadCloud.single('picture'), (req, res, next) => {
     // const { street, number, city, category, description } = req.body;
     // const picture = req.file.url;
 
