@@ -17,6 +17,7 @@ router.post('/', uploadCloud.single('picture'), (req, res, next) => {
     console.log('XXXXXXXXXXXX', req.body)
 
     const newReport = new Reports({
+        owner_ID: req.user._id,
         location: {
             street,
             number,

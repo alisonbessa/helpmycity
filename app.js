@@ -1,13 +1,11 @@
 require('dotenv').config()
 
-const express       = require('express');
-const hbs           = require('hbs');
-const app           = express();
-const path          = require('path');
-const mongoose      = require('mongoose');
-const bodyParser    = require('body-parser');
+const express = require('express');
+const hbs = require('hbs');
+const app = express();
+const path = require('path');
+const mongoose = require('mongoose');
 //const uploadCloud   = require('../config/cloudinary');
-
 
 mongoose
 .connect(process.env.MONGODB_URI, {
@@ -17,9 +15,6 @@ mongoose
 .then(x => console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`))
 .catch(err => console.error('Error connecting to mongo', err));
 
-
-// app.use(bodyParser.json())
-// app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
 
@@ -34,9 +29,7 @@ app.use('/', index);
 const auth = require('./routes/auth');
 app.use('/auth', auth);
 
-const newReport = require('./routes/new-report');
-app.use('/new-report', newReport);
+// const newReport = require('./routes/new-report');
+// app.use('/new-report', newReport);
 
-
-
-app.listen(3000);
+app.listen(process.env.PORT, console.log(`Listening on port ${process.env.PORT}`));

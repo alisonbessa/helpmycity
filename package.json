@@ -4,8 +4,8 @@
   "description": "Helping cities since 2020!",
   "main": "app.js",
   "scripts": {
-    "start": "node ./bin/www",
-    "start-dev": "nodemon ./bin/www",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

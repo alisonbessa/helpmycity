@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const reportsSchema = new Schema ({
-    owner_ID : String,
+    owner_ID : Schema.Types.ObjectId,
     location: {
         street: String,
         number: Number,

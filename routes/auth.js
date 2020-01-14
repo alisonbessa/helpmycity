@@ -1,10 +1,8 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
 const User = require('../models/user');
-const router = express.Router();
+const Report = require('../models/reports');
 
-// app.use(bodyParser.urlencoded({extended:true}));
+const router = express.Router();
 
 //! Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -12,14 +10,12 @@ const bcryptSalt = 10;
 
 
 /* SIGN UP ROUTE */
-
 router.get('/signup', (req, res, next) => {
   res.render('signup');
 });
 
 router.post('/signup', (req, res, next) => {
   const {name, email, password } = req.body;
-  console.log("KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK");
   
   if (email === "" || password === "" || name === "") {
     res.render("signup", {
@@ -49,43 +45,91 @@ router.post('/signup', (req, res, next) => {
       if (err) {
         res.render("signup", { message: "Não foi possível efetivar o cadastro" });
       } else {
-        res.redirect("/");
+        res.redirect("login");
       }
     });
-    res.render('signup');
+    res.render('login');
+  });
 });
 
-// router.post("/login", (req, res, next) => {
-//     const theEmail = req.body.email;
-//     const thePassword = req.body.password;
+/* SIGN IN ROUTE */
+router.get('/login', (req, res, next) => {
+  res.render('login');
+});
+
+
+router.post("/login", (req, res, next) => {
+  const theEmail = req.body.email;
+  const thePassword = req.body.password;
   
-//     User.findOne({ "email": theEmail })
-//     .then(user => {
-//         if (!user) {
-//           res.render("auth/login", {
-//             message: "E-mail não cadastrado ou senha incorreta"
-//           });
-//           return;
-//         }
-//         //! Password test
-//         if (bcrypt.compareSync(thePassword, user.password)) {
-//         if (thePassword === user.password) {
+  User.findOne({ "email": theEmail })
+  .then(user => {
+    if (!user) {
+      res.render("auth/login", {
+        message: "E-mail não cadastrado ou senha incorreta"
+      });
+      return;
+    }
+    //! Password test
+    console.log(thePassword, user.password)
+    if (bcrypt.compareSync(thePassword, user.password)) {    
+        //TODO Save the login in the session!
+        
+        req.currentUser = user;
+        res.redirect("/auth/dashboard");
+        //! res.redirect("/dashboard");     <---------------------------------------------------------- Um ou outro?
+      } else {
+        res.render("", {
+          message: "E-mail não cadastrado ou senha incorreta"
+        });
+      }
+  })
+  .catch(error => {
+    next(error);
+  })
+})
 
-//           //TODO Save the login in the session!
+/* DASHBOARD ROUTE */
+router.get('/dashboard', (req, res, next) => {
+  Report.find()
+      .then(reports =>
+          res.render('dashboard', {
+              reports
+      })
+  )}
+);
 
-//           req.session.currentUser = user;
-//           res.redirect("/dashboard");
-//         } else {
-//           res.render("", {
-//             message: "E-mail não cadastrado ou senha incorreta"
-//           });
-//         }
-//       }
-//     })
-  //   .catch(error => {
-  //     next(error);
-  //   })
-  // })
+// GET reports edit form
+router.get('/edit/:id', (req, res) => {
+  const { id } = req.params;
+  
+  Report.findById(id)
+    .then(report => {
+      //res.send(report);
+      res.render('edit', {report});
+    })
+    .catch(error => next(error))
 });
+
+// POST book edit
+router.post('/edit/:id', (req, res, next) => {
+  console.log(req.body)
+  const { id } = req.params;
+  const { street, number, city, category, description } = req.body;
+  const newReport = {
+    location: {
+      street,
+      number,
+      city,
+    },
+    category,
+    description,
+  }
+
+  Report.findByIdAndUpdate(id, newReport )
+    .then(_ => res.redirect('/auth/dashboard'))
+    .catch(error => next(error))
+});
+
 
 module.exports = router;

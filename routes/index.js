@@ -11,18 +11,9 @@ router.get('/', (req, res, next) => {
     res.render('index', data);
 });
 
-router.get('/dashboard', (req, res, next) => {
-    Reports.find()
-        .then(reports =>
-            res.render('dashboard', {
-                reports
-        })
-    )}
-);
 
-router.get('/login', (req, res, next) => {
-    res.render('login');
-});
+  
+
 
 
 
