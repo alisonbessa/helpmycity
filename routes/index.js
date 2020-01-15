@@ -12,11 +12,6 @@ router.get('/', (req, res, next) => {
 });
 
 
-  
-
-
-
-
 router.get('/logout', (req, res, next) => {
     res.render('logout');
 });

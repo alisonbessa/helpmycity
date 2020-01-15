@@ -1,6 +1,6 @@
 <h1>Novo problema</h1>
 
-<form action="/new-report" method="post" enctype="multipart/form-data">
+<form action="/auth/new-report" method="post" enctype="multipart/form-data">
 
   <label>Categoria:
     <select name="category">
@@ -18,24 +18,24 @@
   <h3>Endereço: </h3>
   <label>Rua:
     <input type="text" name="street" value=""><br>
-  </label>
+  </label><br>
 
   <label>Número:
     <input type="text" name="number" value=""><br>
-  </label>
+  </label><br>
 
   <label>Cidade:
     <input type="text" name="city" value=""><br>
-  </label>
+  </label><br>
 
 
   <label>Descrição:
     <input type="text" name="description" value=""><br>
-  </label>
+  </label><br>
 
   <label>Foto:
     <input type="file" name="picture">
-  </label>
+  </label><br>
 
   <button type="submit">Registrar</button>
 </form>

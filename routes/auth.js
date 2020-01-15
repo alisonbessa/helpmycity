@@ -1,15 +1,16 @@
 const express = require('express');
 const User = require('../models/user');
 const Report = require('../models/reports');
+const uploadCloud = require('../config/cloudinary');
 
 const router = express.Router();
 
-//! Bcrypt to encrypt passwords
+// BCRYPT TO ENCRYPT PASSWORDS
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 
-/* SIGN UP ROUTE */
+// SIGN UP ROUTE
 router.get('/signup', (req, res, next) => {
   res.render('signup');
 });
@@ -23,9 +24,7 @@ router.post('/signup', (req, res, next) => {
     });
   }
 
-  //! User verification
-
-
+  // SIGNUP - User verification
   User.findOne({ email })
   .then(user => {
     if (user !== null) {
@@ -53,7 +52,7 @@ router.post('/signup', (req, res, next) => {
   });
 });
 
-/* SIGN IN ROUTE */
+// SIGN IN ROUTE
 router.get('/login', (req, res, next) => {
   res.render('login');
 });
@@ -90,7 +89,7 @@ router.post("/login", (req, res, next) => {
   })
 })
 
-/* DASHBOARD ROUTE */
+// DASHBOARD ROUTE
 router.get('/dashboard', (req, res, next) => {
   Report.find()
       .then(reports =>
@@ -100,7 +99,7 @@ router.get('/dashboard', (req, res, next) => {
   )}
 );
 
-// GET reports edit form
+// EDIT ROUTE - GET
 router.get('/edit/:id', (req, res) => {
   const { id } = req.params;
   
@@ -111,7 +110,7 @@ router.get('/edit/:id', (req, res) => {
     .catch(error => next(error))
 });
 
-// POST report edit
+// EDIT ROUTE - POST
 router.post('/edit/:id', (req, res, next) => {
   console.log(req.body)
   const { id } = req.params;
@@ -132,8 +131,6 @@ router.post('/edit/:id', (req, res, next) => {
 });
 
 
-
-
 router.get('/edit/:id', (req, res) => {
   const { id } = req.params;
   
@@ -152,6 +149,41 @@ router.get('/delete-report/:id', (req, res, next) => {
       res.redirect('/auth/dashboard');
     })
     .catch(error => next(error))
+});
+
+
+// NEW REPORT ROUTE
+
+router.get('/new-report', (req, res, next) => {
+  res.render('new-report');
+});
+
+router.post('/new-report', uploadCloud.single('picture'), (req, res, next) => {
+  const { street, number, city, category, description } = req.body;
+  const picture = req.file.url;
+
+
+  console.log('XXXXXXXXXXXX', req.body);
+
+  const newReport = new Reports({
+      owner_ID: req.user._id,
+      location: {
+          street,
+          number,
+          city,
+      },
+      category,
+      picture,
+      description,
+  });
+
+  newReport.save()
+      .then(() => {
+          res.redirect('/dashboard');
+      })
+      .catch(error => {
+          console.log(error);
+      })
 });
 
 module.exports = router;
