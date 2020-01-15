@@ -1,11 +1,13 @@
 require('dotenv').config()
 
-const express = require('express');
-const hbs = require('hbs');
-const app = express();
-const path = require('path');
-const mongoose = require('mongoose');
-//const uploadCloud   = require('../config/cloudinary');
+const express       = require('express');
+const hbs           = require('hbs');
+const app           = express();
+const path          = require('path');
+const mongoose      = require('mongoose');
+const bodyParser    = require('body-parser');
+
+require("dotenv").config();
 
 mongoose
 .connect(process.env.MONGODB_URI, {
