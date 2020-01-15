@@ -7,7 +7,7 @@ const uploadCloud = require('../config/cloudinary');
 const router = express.Router();
 
 // BCRYPT TO ENCRYPT PASSWORDS
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 
 
@@ -19,9 +19,9 @@ router.get('/signup', (req, res, next) => {
 router.post('/signup', (req, res, next) => {
   const {name, email, password } = req.body;
   
-  if (email === "" || password === "" || name === "") {
-    res.render("signup", {
-      message: "Por favor insira o nome do usuário, um e-mail e senha"
+  if (email === '' || password === '' || name === '') {
+    res.render('signup', {
+      message: 'Por favor insira o nome do usuário, um e-mail e senha'
     });
   }
 
@@ -29,7 +29,7 @@ router.post('/signup', (req, res, next) => {
   User.findOne({ email })
   .then(user => {
     if (user !== null) {
-      res.render("signup", { message: "O e-mail já está cadastrado" });
+      res.render('signup', { message: 'O e-mail já está cadastrado' });
       return;
     }
 
@@ -44,9 +44,9 @@ router.post('/signup', (req, res, next) => {
 
     newUser.save((err) => {
       if (err) {
-        res.render("signup", { message: "Não foi possível efetivar o cadastro" });
+        res.render('signup', { message: 'Não foi possível efetivar o cadastro' });
       } else {
-        res.redirect("login");
+        res.redirect('login');
       }
     });
     res.render('login');
@@ -59,15 +59,15 @@ router.get('/login', (req, res, next) => {
 });
 
 
-router.post("/login", (req, res, next) => {
+router.post('/login', (req, res, next) => {
   const theEmail = req.body.email;
   const thePassword = req.body.password;
   
-  User.findOne({ "email": theEmail })
+  User.findOne({ 'email': theEmail })
   .then(user => {
     if (!user) {
-      res.render("auth/login", {
-        message: "E-mail não cadastrado ou senha incorreta"
+      res.render('auth/login', {
+        message: 'E-mail não cadastrado ou senha incorreta'
       });
       return;
     }
@@ -77,11 +77,11 @@ router.post("/login", (req, res, next) => {
         //TODO Save the login in the session!
         
         req.currentUser = user;
-        res.redirect("/auth/dashboard");
-        //! res.redirect("/dashboard");     <---------------------------------------------------------- Um ou outro?
+        res.redirect('/auth/dashboard');
+        //! res.redirect('/dashboard');     <---------------------------------------------------------- Um ou outro?
       } else {
-        res.render("", {
-          message: "E-mail não cadastrado ou senha incorreta"
+        res.render('', {
+          message: 'E-mail não cadastrado ou senha incorreta'
         });
       }
   })
