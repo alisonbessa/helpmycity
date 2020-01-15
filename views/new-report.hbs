@@ -1,6 +1,14 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <div class="navbar-nav">
+    <a class="nav-item nav-link" href="/allreports">Início</a>
+    <a class="nav-item nav-link" href="/dashboard">Editar</a>
+    <a class="nav-item nav-link" href="/logout">Sair</a>    
+  </div>
+</nav><br>
+
 <h1>Novo problema</h1>
 
-<form action="/auth/new-report" method="post" enctype="multipart/form-data">
+<form action="/new-report" method="post" enctype="multipart/form-data">
 
   <label>Categoria:
     <select name="category">

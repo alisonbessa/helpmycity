@@ -1,10 +1,30 @@
-<form action="/auth/login" method="post">
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <div class="navbar-nav">
+    <a class="nav-item nav-link" href="/">Início</a>
+    <a class="nav-item nav-link" href="/signup">Cadastrar</a>
+    {{!-- <a class="nav-item nav-link" href="/dashboard">Editar</a> --}}
+    {{!-- <a class="nav-item nav-link" href="/logout">Sair</a>     --}}
+  </div>
+</nav><br>
 
-  <label for="">E-mail: </label>
-  <input type="email" name="email"><br>
 
-  <label for="">Senha: </label>
-  <input type="password" name="password"><br>
 
-  <button type="submit">Login</button>
-</form>
+<div class="divForm">
+  <form action="/login" method="post">
+    <div class="form-group row">
+      <label for="staticEmail" class="col-sm-12 col-form-label">E-mail</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" id="staticEmail" placeholder="email@exemplo.com" name="email">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputPassword" class="col-sm-12 col-form-label">Senha</label>
+      <div class="col-sm-6">
+        <input type="password" class="form-control" id="inputPassword" placeholder="Senha" name="password">
+      </div>
+    </div>
+  <div align="center"></div>
+  <button type="submit" class="btn center btn-primary mb-2" align="center">Confirmar identidade</button>
+  </div>
+  </form> 
+</div> 
