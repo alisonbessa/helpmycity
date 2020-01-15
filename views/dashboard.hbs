@@ -1,0 +1,13 @@
+{{!-- <ul>
+  {{#each reports}}
+    <li><a href="/reports/{{_id}}">{{category}} - {{location.street}}</a></li>
+  {{/each}}
+</ul> --}}
+
+<ul>
+  {{#each reports}}
+  <li>{{location.street}} |</li>
+    <a href="/auth/edit/{{_id}}">edit</a>
+    <a href="/auth/delete-report/{{_id}}">delete</a></li>
+  {{/each}}
+</ul>

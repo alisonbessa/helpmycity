@@ -23,6 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
+hbs.registerPartials(__dirname + '/views/partials');
 
 const index = require('./routes/index');
 app.use('/', index);
@@ -33,6 +34,4 @@ app.use('/auth', auth);
 const newReport = require('./routes/new-report');
 app.use('/new-report', newReport);
 
-
-
-app.listen(process.env.PORT);
+app.listen(process.env.PORT, console.log(`Listening on port ${process.env.PORT}`));

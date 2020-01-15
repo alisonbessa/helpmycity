@@ -1,29 +1,41 @@
 <h1>Novo problema</h1>
 
-<form action="/new-report" method="post" enctype="multipart/form-data">
-  <label>Tipo:
-    <input type="text" name="type" value=""><br>
-  </label>
+<form action="/auth/new-report" method="post" enctype="multipart/form-data">
+
+  <label>Categoria:
+    <select name="category">
+      <option value="Iluminação - Item 01">Iluminação - Item 01</option>
+      <option value="Iluminação - Item 02">Iluminação - Item 02</option>
+      <option value="Iluminação - Item 03">Iluminação - Item 03</option>
+      <option value="Iluminação - Item 04">Iluminação - Item 04</option>
+      <option value="Saneamento - Item 01">Saneamento - Item 01</option>
+      <option value="Saneamento - Item 02">Saneamento - Item 02</option>
+      <option value="Saneamento - Item 03">Saneamento - Item 03</option>
+      <option value="Saneamento - Item 04">Saneamento - Item 04</option>
+    </select>
+  </label><br>
 
   <h3>Endereço: </h3>
   <label>Rua:
     <input type="text" name="street" value=""><br>
-  </label>
+  </label><br>
 
   <label>Número:
     <input type="text" name="number" value=""><br>
-  </label>
+  </label><br>
 
   <label>Cidade:
     <input type="text" name="city" value=""><br>
-  </label>
+  </label><br>
+
 
   <label>Descrição:
     <input type="text" name="description" value=""><br>
-  </label>
+  </label><br>
 
-  <label>Foto: </label>
-  <input type="file" name="picture">
+  <label>Foto:
+    <input type="file" name="picture">
+  </label><br>
 
   <button type="submit">Registrar</button>
 </form>
