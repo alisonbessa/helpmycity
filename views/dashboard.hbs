@@ -1,13 +1,12 @@
-{{!-- <ul>
-  {{#each reports}}
-    <li><a href="/reports/{{_id}}">{{category}} - {{location.street}}</a></li>
-  {{/each}}
-</ul> --}}
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <div class="navbar-nav">
+    <a class="nav-item nav-link" href="/allreports">Início</a>
+    <a class="nav-item nav-link" href="/new-report">Reportar</a>
+    {{!--<a class="nav-item nav-link" href="/dashboard">Editar</a> --}}
+    <a class="nav-item nav-link" href="/logout">Sair</a>    
+  </div>
+</nav><br>
 
-<ul>
-  {{#each reports}}
-  <li>{{location.street}} |</li>
-    <a href="/auth/edit/{{_id}}">edit</a>
-    <a href="/auth/delete-report/{{_id}}">delete</a></li>
-  {{/each}}
-</ul>
+<div>
+{{> reports}}
+</div>

@@ -1,3 +1,21 @@
-<div>
-    {{this.location}}
-</div>
+<table>
+    <tr>
+        <th>Tipo</th>
+        <th>Local</th>
+        <th>Opções</th>
+    </tr>
+  {{#each reports}}
+    <tr>
+        <td>      
+            {{this.category}}
+        </td>
+        <td>
+            {{location.street}}
+        </td>
+        <td>
+            <a href="/edit/{{_id}}">Editar</a> | 
+            <a href="/delete-report/{{_id}}">Excluir</a>
+        </td>
+    </tr>
+  {{/each}}
+</table>

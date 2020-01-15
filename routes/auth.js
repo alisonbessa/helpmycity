@@ -1,17 +1,21 @@
-const express = require('express');
-const User = require('../models/user');
-const Report = require('../models/reports');
-const Reports = require('../models/reports');
-const uploadCloud = require('../config/cloudinary');
+const express       = require('express');
+const User          = require('../models/user');
+const Report        = require('../models/reports');
+const Reports       = require('../models/reports');
+const uploadCloud   = require('../config/cloudinary');
+const passport      = require("passport");
+
+const ensureLogin   = require("connect-ensure-login");
+// const localStrategy = require('passport-local').Strategy;
 
 const router = express.Router();
 
 // BCRYPT TO ENCRYPT PASSWORDS
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcrypt');
 const bcryptSalt = 10;
 
 
-// SIGN UP ROUTE
+// SIGNUP ROUTE
 router.get('/signup', (req, res, next) => {
   res.render('signup');
 });
@@ -19,9 +23,9 @@ router.get('/signup', (req, res, next) => {
 router.post('/signup', (req, res, next) => {
   const {name, email, password } = req.body;
   
-  if (email === "" || password === "" || name === "") {
-    res.render("signup", {
-      message: "Por favor insira o nome do usuário, um e-mail e senha"
+  if (email === '' || password === '' || name === '') {
+    res.render('signup', {
+      message: 'Por favor insira o nome do usuário, um e-mail e senha'
     });
   }
 
@@ -29,7 +33,7 @@ router.post('/signup', (req, res, next) => {
   User.findOne({ email })
   .then(user => {
     if (user !== null) {
-      res.render("signup", { message: "O e-mail já está cadastrado" });
+      res.render('signup', { message: 'O e-mail já está cadastrado' });
       return;
     }
 
@@ -44,64 +48,75 @@ router.post('/signup', (req, res, next) => {
 
     newUser.save((err) => {
       if (err) {
-        res.render("signup", { message: "Não foi possível efetivar o cadastro" });
+        res.render('signup', { 
+          message: 'Não foi possível efetivar o cadastro'
+        });
       } else {
-        res.redirect("login");
+        res.redirect('login');
       }
     });
     res.render('login');
   });
 });
 
-// SIGN IN ROUTE
-router.get('/login', (req, res, next) => {
-  res.render('login');
-});
+// SIGN IN ROUTE ============> TESTAR
+router.get("/login", (req, res, next) => {
+  res.render("login",{
+    message: req.flash('error')
+  }); 
+ });
+
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    res.redirect('/login')
+  }
+}
+
+ router.post("/login", passport.authenticate("local",
+ {
+  successRedirect: "/dashboard", 
+  failureRedirect: "/login", 
+  failureFlash: true, 
+  passReqToCallback: true, 
+ }
+ ));
+ 
+ // ALLREPORTS ROUTE
+ router.get('/allreports', (req, res, next) => {
+   Report.find().sort({category: 1})
+   .then(reports =>
+    res.render('allreports', { reports })
+    )}
+ );
 
 
-router.post("/login", (req, res, next) => {
-  const theEmail = req.body.email;
-  const thePassword = req.body.password;
+// DETAILS ROUTE
+router.get('/details/:id', (req, res) => {
+ const { id } = req.params;
+ 
+ Report.findById(id)
+   .then(report => {
+     res.render('details', {report});
+   })
+   .catch(error => next(error))
+ });
+
+
+ //! PRIVATE ROUTES ==== START ====
+ 
+ // DASHBOARD ROUTE
+ router.get('/dashboard', ensureAuthenticated, (req, res, next) => {
+   Report.find({owner_ID: req.user._id}).sort({category: 1})
+   .then(reports =>
+    res.render('dashboard', {user: req.user, reports })
+    )}
+  );
   
-  User.findOne({ "email": theEmail })
-  .then(user => {
-    if (!user) {
-      res.render("auth/login", {
-        message: "E-mail não cadastrado ou senha incorreta"
-      });
-      return;
-    }
-    //! Password test
-    console.log(thePassword, user.password)
-    if (bcrypt.compareSync(thePassword, user.password)) {    
-        //TODO Save the login in the session!
-        
-        req.currentUser = user;
-        res.redirect("/auth/dashboard");
-        //! res.redirect("/dashboard");     <---------------------------------------------------------- Um ou outro?
-      } else {
-        res.render("", {
-          message: "E-mail não cadastrado ou senha incorreta"
-        });
-      }
-  })
-  .catch(error => {
-    next(error);
-  })
-})
-
-// DASHBOARD ROUTE
-router.get('/dashboard', (req, res, next) => {
-  Report.find()
-      .then(reports =>
-          res.render('dashboard', {
-              reports
-      })
-  )}
-);
 
 // EDIT ROUTE - GET
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', ensureAuthenticated, (req, res) => {
   const { id } = req.params;
   
   Report.findById(id)
@@ -109,10 +124,10 @@ router.get('/edit/:id', (req, res) => {
       res.render('edit', {report});
     })
     .catch(error => next(error))
-});
+  });
 
 // EDIT ROUTE - POST
-router.post('/edit/:id', (req, res, next) => {
+router.post('/edit/:id', ensureAuthenticated, (req, res, next) => {
   console.log(req.body)
   const { id } = req.params;
   const { street, number, city, category, description } = req.body;
@@ -127,12 +142,12 @@ router.post('/edit/:id', (req, res, next) => {
   }
 
   Report.findByIdAndUpdate(id, newReport )
-    .then(_ => res.redirect('/auth/dashboard'))
+    .then(_ => res.redirect('/dashboard'))
     .catch(error => next(error))
-});
+  });
 
 
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', ensureAuthenticated, (req, res) => {
   const { id } = req.params;
   
   Report.findById(id)
@@ -140,34 +155,30 @@ router.get('/edit/:id', (req, res) => {
       res.render('edit', {report});
     })
     .catch(error => next(error))
-});
+  });
 
 
-router.get('/delete-report/:id', (req, res, next) => {
+router.get('/delete-report/:id', ensureAuthenticated, (req, res, next) => {
   const { id } = req.params;
   Report.findByIdAndDelete(id)
     .then(del => {
-      res.redirect('/auth/dashboard');
+      res.redirect('/dashboard');
     })
     .catch(error => next(error))
 });
 
-
 // NEW REPORT ROUTE
 
-router.get('/new-report', (req, res, next) => {
+router.get('/new-report', ensureAuthenticated,(req, res, next) => {
   res.render('new-report');
 });
 
-router.post('/new-report', uploadCloud.single('picture'), (req, res, next) => {
+router.post('/new-report', [ensureAuthenticated, uploadCloud.single('picture')], (req, res, next) => {
   const { street, number, city, category, description } = req.body;
   const picture = req.file.url;
 
-
-  console.log('XXXXXXXXXXXX', req.user);
-
   const newReport = new Reports({
-      //owner_ID: req.user._id,
+      owner_ID: req.user._id,
       location: {
           street,
           number,
@@ -176,15 +187,24 @@ router.post('/new-report', uploadCloud.single('picture'), (req, res, next) => {
       category,
       picture,
       description,
-  });
-
+  })
   newReport.save()
       .then(() => {
-          res.redirect('/auth/dashboard');
+          res.redirect('/dashboard');
       })
       .catch(error => {
           console.log(error);
       })
-});
 
-module.exports = router;
+      
+    },)
+    
+    //! PRIVATE ROUTES ====  END  ====
+
+    /* LOGOUT */
+    router.get("/logout", (req, res) => {
+      req.logout();
+      res.redirect("/");
+    });
+
+    module.exports = router;
