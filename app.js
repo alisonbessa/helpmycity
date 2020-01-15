@@ -5,7 +5,6 @@ const hbs           = require('hbs');
 const app           = express();
 const path          = require('path');
 const mongoose      = require('mongoose');
-const bodyParser    = require('body-parser');
 
 require("dotenv").config();
 
