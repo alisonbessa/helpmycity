@@ -61,10 +61,11 @@ passport.deserializeUser((id, cb) => {
 });
 
 passport.use(new LocalStrategy({
+  passReqToCallback: true,
   usernameField: 'email',
   passwordField: 'password'
 } , 
-(username, password, next) => {
+(req, username, password, next) => {
   User.findOne({ email: username }, (err, user) => {
     if (err) {
       return next(err);

@@ -6,6 +6,32 @@
     
   </div>
 </nav> <br>
+<form action="/allreports/{{report.category}}" method="post"> 
+  <label>Categoria:
+    <select name="category" value="">
+      <option value="">seclect</option>
+      <option value="Iluminação - Item 01">Iluminação - Item 01</option>
+      <option value="Iluminação - Item 02">Iluminação - Item 02</option>
+      <option value="Iluminação - Item 03">Iluminação - Item 03</option>
+      <option value="Iluminação - Item 04">Iluminação - Item 04</option>
+      <option value="Saneamento - Item 01">Saneamento - Item 01</option>
+      <option value="Saneamento - Item 02">Saneamento - Item 02</option>
+      <option value="Saneamento - Item 03">Saneamento - Item 03</option>
+      <option value="Saneamento - Item 04">Saneamento - Item 04</option>
+    </select>
+  </label>
+
+
+
+  <button type="submit">Buscar</button>
+</form> 
+
+
+<hr>
+
+{{#if message}}
+{{message}}oeeeeeeee
+{{/if}}
 
 <table>
     <tr>
