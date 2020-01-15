@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <div class="navbar-nav">
+    <a class="nav-item nav-link" href="/dashboard">Editar</a>
+    <a class="nav-item nav-link" href="/new-report">Registrar</a>
+    <a class="nav-item nav-link" href="/logout">Sair</a>
+    
+  </div>
+</nav> <br>
+
+<table>
+    <tr>
+        <th>Tipo</th>
+        <th>Local</th>
+        <th>Opções</th>
+    </tr>
+  {{#each reports}}
+    <tr>
+        <td>      
+            {{this.category}}
+        </td>
+        <td>
+            {{location.street}}
+        </td>
+        <td>
+            <a href="/details/{{_id}}">Detalhes</a>
+         
+        </td>
+    </tr>
+  {{/each}}
+</table>

@@ -1,19 +1,28 @@
 const express = require('express');
 
 const router = express.Router();
-const Reports = require('../models/reports');
+const Report = require('../models/reports');
 
 
 router.get('/', (req, res, next) => {
-    let data = {
-        layout: false
-    }
-    res.render('index', data);
+    Report.find()
+   .then(reports =>
+    res.render('index', {user: req.user, reports })
+   )
 });
 
 
 router.get('/logout', (req, res, next) => {
     res.render('logout');
 });
+
+
+// router.get('/allreports', (req, res, next) => {
+//     res.render('allreports');
+// });
+
+// router.get('/details', (req, res, next) => {
+//     res.render('details');
+// });
 
 module.exports = router;
