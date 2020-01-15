@@ -148,7 +148,7 @@ router.get('/edit/:id', (req, res) => {
 router.get('/delete-report/:id', (req, res, next) => {
   const { id } = req.params;
   Report.findByIdAndDelete(id)
-    .then(_ => {
+    .then(doesntMatter_ => {
       res.redirect('/auth/dashboard');
     })
     .catch(error => next(error))
