@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('../models/user');
 const Report = require('../models/reports');
+const Reports = require('../models/reports');
 const uploadCloud = require('../config/cloudinary');
 
 const router = express.Router();
@@ -145,7 +146,7 @@ router.get('/edit/:id', (req, res) => {
 router.get('/delete-report/:id', (req, res, next) => {
   const { id } = req.params;
   Report.findByIdAndDelete(id)
-    .then(doesntMatter_ => {
+    .then(del => {
       res.redirect('/auth/dashboard');
     })
     .catch(error => next(error))
@@ -163,10 +164,10 @@ router.post('/new-report', uploadCloud.single('picture'), (req, res, next) => {
   const picture = req.file.url;
 
 
-  console.log('XXXXXXXXXXXX', req.body);
+  console.log('XXXXXXXXXXXX', req.user);
 
   const newReport = new Reports({
-      owner_ID: req.user._id,
+      //owner_ID: req.user._id,
       location: {
           street,
           number,
@@ -179,7 +180,7 @@ router.post('/new-report', uploadCloud.single('picture'), (req, res, next) => {
 
   newReport.save()
       .then(() => {
-          res.redirect('/dashboard');
+          res.redirect('/auth/dashboard');
       })
       .catch(error => {
           console.log(error);
