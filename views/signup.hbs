@@ -1,28 +1,33 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark">
   <div class="navbar-nav">
     <a class="nav-item nav-link" href="/allreports">Início</a>
-    {{!-- <a class="nav-item nav-link" href="/new-report">Reportar</a> --}}
     <a class="nav-item nav-link" href="/login">Entrar</a>    
   </div>
-</nav><br>
+</nav>
 
-<h1>Signup PAGE</h1>
+<br>
 
-<form action="/signup" method="post">
-  <label for="">Nome: </label>
-  <input type="text" name="name" placeholder="Insira seu nome"><br>
+<div class="body-layout">
+  <div class="divForm">
+    <p align="center" class="col-form-label"><strong>Cadastro</strong></p>
+    <form action="/signup" method="post">
+      <div class="form-group">
+        <label for="" class="col-form-label"><strong>Nome:</strong></label>
+        <input type="text" name="name" class="form-control" placeholder="Insira seu nome"><br>
 
-  <label for="">E-mail: </label>
-  <input type="email" name="email" placeholder="Insira seu e-mail"><br>
+        <label for="" class="col-form-label"><strong>E-mail:</strong></label>
+        <input type="email" name="email" class="form-control" placeholder="Insira seu e-mail"><br>
 
-  <label for="">Senha: </label>
-  <input type="password" name="password" placeholder="Insira sua senha"><br>
+        <label for="" class="col-form-label"><strong>Senha:</strong></label>
+        <input type="password" name="password" class="form-control" placeholder="Insira sua senha"><br>
 
-  {{#if message}}
-  <hr>
-  <div class="error-message">{{ message }}</div>
-  {{/if}}
-  <br><br>
-  
-  <button type="submit">Registrar</button>
-</form>
+        {{#if message}}
+        <hr>
+        <div class="error-message">{{ message }}</div>
+        {{/if}}
+      
+        <button type="submit" class="btn btn-sm btn-block btn-dark">Registrar</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -6,6 +6,7 @@
     border:0
     }
 
+
 .body-flex{
 	display: flex;
 	flex-direction: column;
@@ -25,10 +26,23 @@
     padding: 0;
 }
 
+.content{
+    padding: 10px;  
+    background-color: #a5c4e6;
+    color:#343a40 ;
+    min-width: 330px;
+    max-width: 90%;
+    height: auto;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 6px;
+}
+
 .divForm{
     padding: 10px;  
-    background-color: #B2CCD4;
+    background-color: #a5c4e6;
     color:#343a40 ;
+    min-width: 330px;
     max-width: 90%;
     height: auto;
     margin: auto;
