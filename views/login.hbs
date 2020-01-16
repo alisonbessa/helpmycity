@@ -1,30 +1,25 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark">
   <div class="navbar-nav">
-    <a class="nav-item nav-link" href="/">Início</a>
+    <a class="nav-item nav-link" href="/allreports">Início</a>
     <a class="nav-item nav-link" href="/signup">Cadastrar</a>
-    {{!-- <a class="nav-item nav-link" href="/dashboard">Editar</a> --}}
-    {{!-- <a class="nav-item nav-link" href="/logout">Sair</a>     --}}
   </div>
-</nav><br>
+</nav>
 
+<br>
 
-
-<div class="divForm">
-  <form action="/login" method="post">
-    <div class="form-group row">
-      <label for="staticEmail" class="col-sm-12 col-form-label">E-mail</label>
-      <div class="col-sm-6">
-        <input type="text" class="form-control" id="staticEmail" placeholder="email@exemplo.com" name="email">
+<div class="body-layout">
+  <div class="divForm">
+    <p align="center" class="col-form-label"><strong>Entrar</strong></p>
+    <form action="/login" method="post">
+      <div class="form-group">
+        <label for="staticEmail" class="col-form-label"><strong>E-mail</strong></label>
+        <input type="text" class="form-control" id="staticEmail" placeholder="email@exemplo.com" name="email"><br>
+        
+        <label for="inputPassword" class="col-form-label"><strong>Senha</strong></label>
+        <input type="password" class="form-control" id="inputPassword" placeholder="*****" name="password">
       </div>
-    </div>
-    <div class="form-group row">
-      <label for="inputPassword" class="col-sm-12 col-form-label">Senha</label>
-      <div class="col-sm-6">
-        <input type="password" class="form-control" id="inputPassword" placeholder="Senha" name="password">
-      </div>
-    </div>
-  <div align="center"></div>
-  <button type="submit" class="btn center btn-primary mb-2" align="center">Confirmar identidade</button>
+      
+      <button type="submit" class="btn btn-sm btn-block btn-dark">Confirmar identidade</button>
+    </form>
   </div>
-  </form> 
 </div> 

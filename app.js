@@ -61,10 +61,11 @@ passport.deserializeUser((id, cb) => {
 });
 
 passport.use(new LocalStrategy({
+  passReqToCallback: true,
   usernameField: 'email',
   passwordField: 'password'
 } , 
-(username, password, next) => {
+(req, username, password, next) => {
   User.findOne({ email: username }, (err, user) => {
     if (err) {
       return next(err);
@@ -91,5 +92,8 @@ app.use('/', auth);
 
 const newReport = require('./routes/new-report');
 app.use('/new-report', newReport);
+
+// const apiRoutes = require('./routes/googleapi');
+// app.use('/', apiRoutes);
 
 app.listen(process.env.PORT, console.log(`Listening on port ${process.env.PORT}`));
