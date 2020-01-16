@@ -2,8 +2,7 @@
   <div class="navbar-nav">
     <a class="nav-item nav-link" href="/dashboard">Editar</a>
     <a class="nav-item nav-link" href="/new-report">Registrar</a>
-    <a class="nav-item nav-link" href="/logout">Sair</a>
-    
+    <a class="nav-item nav-link" href="/logout">Sair</a> 
   </div>
 </nav>
 
@@ -11,9 +10,9 @@
 <div class="body-layout">
   <div class="content">
     <form action="/allreports/{{report.category}}" method="post"> 
-      <label>Categoria:
+      <label>
         <select name="category" value="" class="form-control">
-          <option value="">Selecione um ítem</option>
+          <option value="">Selecione uma categoria</option>
           <option value="Iluminação - Item 01">Iluminação - Item 01</option>
           <option value="Iluminação - Item 02">Iluminação - Item 02</option>
           <option value="Iluminação - Item 03">Iluminação - Item 03</option>
@@ -30,32 +29,18 @@
 
     <hr>
 
-    {{#if message}}
-    {{message}}oeeeeeeee
-    {{/if}}
+    {{!-- {{#if message}}
+    {{message}}
+    {{/if}} --}}
 
-    <table>
-        <tr>
-            <th>Tipo</th>
-            <th>Local</th>
-            <th>Opções</th>
-        </tr>
-      {{#each reports}}
-        <tr>
-            <td>      
-                {{this.category}}
-            </td>
-            <td>
-                {{location.street}}
-            </td>
-            <td>
-                <a href="/details/{{_id}}">Detalhes</a>
-            
-            </td>
-        </tr>
-      {{/each}}
-    </table>
+
+  
+    {{#each reports}}      
+      <a href="/details/{{_id}}" class="btn btn-block btn-dark" role="button">
+        <strong>Tipo:</strong> {{this.category}}<br>
+        <strong>Local:</strong> {{location.street}}<br>
+      </a>
+      <hr>
+    {{/each}}
   </div>
-
-
 </div>
