@@ -5,15 +5,17 @@
     list-style:none;
     border:0
     }
-
+img{
+    align-items: center;
+}
 
 .body-flex{
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: stretch;
-	align-content: center;
+	align-content: stretch;
 }
 
 .body-layout{
