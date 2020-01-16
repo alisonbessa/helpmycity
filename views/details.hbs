@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark">
   <div class="navbar-nav">
-    {{!-- <a class="nav-item nav-link" href="/">Início</a> --}}
+    <a class="nav-item nav-link" href="/allreports">Início</a>
     <a class="nav-item nav-link" href="/new-report">Registrar</a>
     {{!-- <a class="nav-item nav-link" href="/logout">Sair</a> --}}
     
@@ -12,12 +12,12 @@
     <h2>Detalhes</h2><hr>
     <strong>Categoria: </strong>{{report.category}}<hr>
     <strong>Endereço: </strong><br>
-        <span>{{report.location.street}},{{report.location.number}}</span><br>
-    <strong>Cidade: </strong> {{report.location.city}}<hr>
+        <span>{{report.location.street}},{{report.location.number}}</span>
+        <br>{{report.location.city}}<hr>
     <strong>Descrição</strong><br>
     {{report.description}}
     <figure>
-        <img src="{{report.picture}}" alt="">
+        <img class="mw-100" src="{{report.picture}}" alt="">
     </figure>    
 
 </div>

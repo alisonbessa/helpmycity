@@ -26,8 +26,37 @@ const reportsSchema = new Schema ({
     picture: String,
     description: String,
     status: { type: Boolean, default: false },
-    //{timestamps: true},
-});
+},
+{
+    timestamps: true
+},
+);
 
+reportsSchema.index({ location: '2dsphere' });
 const Reports = mongoose.model('Reports', reportsSchema);
 module.exports = Reports;
+
+
+
+
+
+
+
+
+// const mongoose = require('mongoose');
+// const Schema = mongoose.Schema;
+
+
+const placeSchema = new Schema(
+    {
+  name: String,
+  type: { type: String, enum: ['coffee-shop', 'bookstore'] },
+  location: { type: { type: String }, coordinates: [Number] },
+},
+  {
+    timestamps: true
+  }
+);
+
+
+// module.exports = Places;
