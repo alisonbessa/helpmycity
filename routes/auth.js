@@ -7,7 +7,7 @@ const passport = require("passport");
 const flash = require("connect-flash");
 const cloudinary = require("cloudinary").v2.api;
 
-/* Sera que vai */
+/* Sera que vai 2?*/
 
 const ensureLogin = require("connect-ensure-login");
 const localStrategy = require('passport-local').Strategy;

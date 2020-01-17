@@ -11,8 +11,6 @@ router.get('/', (req, res, next) => {
    )
 });
 
-
-
 router.get('/api', (req, res, next) => {
     Report.find()
     .then(reports => res.json(reports))

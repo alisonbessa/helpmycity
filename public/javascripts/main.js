@@ -1,3 +1,5 @@
+/* Sera que vai 2?*/
+
 function startMap() {
   // São Paulo's coordinates
   const saoPaulo = { lat: -23.5505199, lng: -46.6333094 };
