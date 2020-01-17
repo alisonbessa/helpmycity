@@ -46,14 +46,16 @@ router.post("/signup", (req, res, next) => {
       password: hashPass
     });
 
-    newUser.save(err => {
-      if (err) {
-        res.render("signup", {
-          message: "Não foi possível efetivar o cadastro"
-        });
-      } else {
-        res.redirect("login");
-      }
+      newUser.save((err) => {
+        if (err) {
+          res.render('signup', {
+            message: 'Não foi possível efetivar o cadastro'
+          });
+        } else {
+          res.redirect('/login');
+        }
+      });
+      res.render('login');
     });
     res.render("login");
   });
@@ -99,11 +101,11 @@ router.post("/allreports", (req, res, next) => {
   Reports.find({ category: req.body.category })
     .then(reports => {
       if (reports.length > 0) {
-        res.render("allreports", { reports });
+        res.render('allreports', { reports })
         return;
       } else {
         req.flash("error", "");
-        res.render("allreports", { message: req.flash("error") });
+        res.render('allreports',{message: req.flash("error") });
         return;
       }
     })
