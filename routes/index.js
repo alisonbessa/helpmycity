@@ -11,13 +11,11 @@ router.get('/', (req, res, next) => {
    )
 });
 
+router.get('/api', (req, res, next) => {
+    Report.find()
+    .then(reports => res.json(reports))
+    .catch(error => console.log(error))
+});
 
-// router.get('/allreports', (req, res, next) => {
-//     res.render('allreports');
-// });
-
-// router.get('/details', (req, res, next) => {
-//     res.render('details');
-// });
 
 module.exports = router;
