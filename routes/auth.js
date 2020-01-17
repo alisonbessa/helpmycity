@@ -112,10 +112,13 @@ router.post("/allreports", (req, res, next) => {
 // DETAILS ROUTE
 router.get("/details/:id", (req, res) => {
   const { id } = req.params;
-
   Report.findById(id)
     .then(report => {
-      res.render("details", { report });
+      User.findById(report.owner_ID)
+      .then(nameOfUser => {
+        res.render("details", {report, nameOfUser });
+      })
+      .catch(error => next(error));
     })
     .catch(error => next(error));
 });
