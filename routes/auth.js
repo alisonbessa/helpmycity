@@ -127,7 +127,7 @@ router.get("/details/:id", (req, res, next) => {
 
 // DASHBOARD ROUTE
 router.get("/dashboard", ensureAuthenticated, (req, res, next) => {
-  Report.find({ owner_ID: req.user._id })
+  Reports.find({ owner_ID: req.user._id })
     .sort({ category: 1 })
     .then(reports => res.render("dashboard", { user: req.user, reports }));
 });
@@ -157,7 +157,7 @@ router.post("/edit/:id", ensureAuthenticated, (req, res, next) => {
     description
   };
  
-  ReportfindByIdAndUpdate(id, newReport)
+  Report.findByIdAndUpdate(id, newReport)
     .then(_ => res.redirect("/dashboard"))
     .catch(error => next(error));
 });
@@ -165,7 +165,7 @@ router.post("/edit/:id", ensureAuthenticated, (req, res, next) => {
 router.get("/edit/:id", ensureAuthenticated, (req, res) => {
   const { id } = req.params;
 
-  ReportfindById(id)
+  Report.findById(id)
     .then(report => {
       res.render("edit", { report });
     })
@@ -174,7 +174,7 @@ router.get("/edit/:id", ensureAuthenticated, (req, res) => {
 
 router.get("/delete-report/:id", ensureAuthenticated, (req, res, next) => {
   const { id } = req.params;
-  ReportfindByIdAndDelete(id)
+  Report.findByIdAndDelete(id)
     .then(del => {
       res.redirect("/dashboard");
     })
