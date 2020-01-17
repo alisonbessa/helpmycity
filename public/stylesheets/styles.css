@@ -26,7 +26,11 @@ img{
     max-height: 80vh;
     margin: auto;
 }
-
+.form{
+    max-width: 500px;
+    padding: 5px 10px;
+    margin: 10px;
+}
 .content{
     padding: 10px;  
     height: auto;
