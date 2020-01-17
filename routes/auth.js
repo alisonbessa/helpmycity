@@ -89,7 +89,7 @@ router.post(
 
 // ALLREPORTS ROUTE
 router.get("/allreports", (req, res, next) => {
-  Report.find()
+  Reports.find()
     .sort({ category: 1 })
     .then(reports => res.render("allreports", { reports }));
 });
@@ -112,9 +112,9 @@ router.post("/allreports", (req, res, next) => {
 // DETAILS ROUTE
 router.get("/details/:id", (req, res) => {
   const { id } = req.params;
-  Report.findById(id)
+  Reports.findById(id)
     .then(report => {
-      User.findById(report.owner_ID)
+      User.findById(reportowner_ID)
       .then(nameOfUser => {
         res.render("details", {report, nameOfUser });
       })
@@ -127,7 +127,7 @@ router.get("/details/:id", (req, res) => {
 
 // DASHBOARD ROUTE
 router.get("/dashboard", ensureAuthenticated, (req, res, next) => {
-  Report.find({ owner_ID: req.user._id })
+  Reports.find({ owner_ID: req.user._id })
     .sort({ category: 1 })
     .then(reports => res.render("dashboard", { user: req.user, reports }));
 });
@@ -136,7 +136,7 @@ router.get("/dashboard", ensureAuthenticated, (req, res, next) => {
 router.get("/edit/:id", ensureAuthenticated, (req, res) => {
   const { id } = req.params;
 
-  Report.findById(id)
+  Reports.findById(id)
     .then(report => {
       res.render("edit", { report });
     })
@@ -157,7 +157,7 @@ router.post("/edit/:id", ensureAuthenticated, (req, res, next) => {
     description
   };
  
-  Report.findByIdAndUpdate(id, newReport)
+  ReportfindByIdAndUpdate(id, newReport)
     .then(_ => res.redirect("/dashboard"))
     .catch(error => next(error));
 });
@@ -165,7 +165,7 @@ router.post("/edit/:id", ensureAuthenticated, (req, res, next) => {
 router.get("/edit/:id", ensureAuthenticated, (req, res) => {
   const { id } = req.params;
 
-  Report.findById(id)
+  ReportfindById(id)
     .then(report => {
       res.render("edit", { report });
     })
@@ -174,7 +174,7 @@ router.get("/edit/:id", ensureAuthenticated, (req, res) => {
 
 router.get("/delete-report/:id", ensureAuthenticated, (req, res, next) => {
   const { id } = req.params;
-  Report.findByIdAndDelete(id)
+  ReportfindByIdAndDelete(id)
     .then(del => {
       res.redirect("/dashboard");
     })
