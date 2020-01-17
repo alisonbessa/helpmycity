@@ -7,6 +7,8 @@ const passport = require("passport");
 const flash = require("connect-flash");
 const cloudinary = require("cloudinary").v2.api;
 
+/* Sera que vai */
+
 const ensureLogin = require("connect-ensure-login");
 const localStrategy = require('passport-local').Strategy;
 
@@ -52,7 +54,7 @@ router.post("/signup", (req, res, next) => {
           message: "Não foi possível efetivar o cadastro"
         });
       } else {
-        res.redirect("login");
+        res.redirect("/login");
       }
     });
     res.render("login");
