@@ -1,50 +1,59 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-  <div class="navbar-nav">
+<nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
+  <div class="navbar-nav mr-auto">
     <a class="nav-item nav-link" href="/allreports">Início</a>
     <a class="nav-item nav-link" href="/dashboard">Editar</a>
     <a class="nav-item nav-link" href="/new-report">Reportar</a>
-    <a class="nav-item nav-link" href="/logout">Sair</a>    
   </div>
-</nav><br>
+  <div class="navbar-nav ml-auto">
+      <a class="nav-item nav-link" href="/logout">Sair</a>
+  </div>
+</nav>
 
-<h1>Novo problema</h1>
+<br>
+<br>
 
-<form action="/edit/{{report.id}}" method="post">
-   
-  <label>Categoria:
-    <select name="category" value="{{report.category}}">
-      <option value="Iluminação - Item 03">Iluminação - Item 01</option>
-      <option value="Iluminação - Item 02">Iluminação - Item 02</option>
-      <option value="Iluminação - Item 01">Iluminação - Item 03</option>
-      <option value="Iluminação - Item 04">Iluminação - Item 04</option>
-      <option value="Saneamento - Item 01">Saneamento - Item 01</option>
-      <option value="Saneamento - Item 02">Saneamento - Item 02</option>
-      <option value="Saneamento - Item 03">Saneamento - Item 03</option>
-      <option value="Saneamento - Item 04">Saneamento - Item 04</option>
-    </select>
-  </label><br>
+<div class="content">
+  <div class"form-group">
+    <h2>Editar publicação</h2>
+    <form action="/edit/{{report.id}}" method="post">
+      
+      <label>Categoria:
+        <select name="category" value="{{report.category}}" class="form-control">
+          <option value="Iluminação - Item 03">Iluminação - Item 01</option>
+          <option value="Iluminação - Item 02">Iluminação - Item 02</option>
+          <option value="Iluminação - Item 01">Iluminação - Item 03</option>
+          <option value="Iluminação - Item 04">Iluminação - Item 04</option>
+          <option value="Saneamento - Item 01">Saneamento - Item 01</option>
+          <option value="Saneamento - Item 02">Saneamento - Item 02</option>
+          <option value="Saneamento - Item 03">Saneamento - Item 03</option>
+          <option value="Saneamento - Item 04">Saneamento - Item 04</option>
+        </select>
+      </label><br>
 
-  <h3>Endereço: </h3>
-  <label>Rua:
-    <input type="text" name="street" value="{{report.location.street}}"><br>
-  </label><br>
+      <label  class="form-group">Endereço:
+        <input type="text" name="street" value="{{report.location.street}}" class="form-control">
+      </label>
 
-  <label>Número:
-    <input type="text" name="number" value="{{report.location.number}}"><br>
-  </label><br>
+      <label>Número:
+        <input type="text" name="number" value="{{report.location.number}}" class="form-control">
+      </label>
 
-  <label>Cidade:
-    <input type="text" name="city" value="{{report.location.city}}"><br>
-  </label><br>
+      <label>Cidade:
+        <input type="text" name="city" value="{{report.location.city}}" class="form-control">
+      </label>
 
 
-  <label>Descrição:
-    <input type="text" name="description" value="{{report.description}}"><br>
-  </label><br>
+      <label>Descrição:
+        <input type="text" name="description" value="{{report.description}}" class="form-control">
+      </label>
 
-  {{!-- <label>Foto:
-    <input type="file" name="picture">
-  </label> --}}
-
-  <button type="submit">Registrar</button>
-</form>
+      {{!-- <label>Foto:
+        <input type="file" name="picture">
+      </label> --}}
+      <br>
+      <input type="hidden" name="latitude" id="placeLatitude" placeholder="latitude">
+      <input type="hidden" name="longitude" id="placeLongitude" placeholder="longitude">
+      <button type="submit" class="btn btn-dark">Alterar</button>
+    </form>
+  </div>
+</div>

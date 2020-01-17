@@ -1,11 +1,39 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-  <div class="navbar-nav">
-    <a class="nav-item nav-link" href="/allreports">Postagens</a>
-    <a class="nav-item nav-link" href="/login">Entrar</a>
-    <a class="nav-item nav-link" href="/signup">Registrar</a>
+<nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
+  <div class="navbar-nav mr-auto"> 
+    <a class="nav-item nav-link btn btn-dark" href="/allreports"  role="button">Postagens</a>
   </div>
-</nav> <br>
-<h1>Index bonitinha</h1>
 
-<p>OLHA O MAP AEEEE</p>
-<div id="map"></div>
+  <div class="navbar-nav ml-auto">
+    <a class="nav-item nav-link p-2 btn btn btn-dark" href="/login" role="button">Entrar</a> 
+    <a class="nav-item nav-link p-2 btn btn-dark" href="/signup" role="button">Registrar</a>
+  </div>
+</nav>
+
+<br>
+<br>
+
+<div class="content">
+  <div class="container">
+    <div class="row align-items-center justify-content-around">
+      <div class="col-md">
+        <h2 class="text-center">Seja bem-vindo!</h2>
+    <p>
+      O Help My City é uma plataforma onde você pode documentar os problemas de sua cidade, através de um jeito simples e eficaz.
+      Cada registro entrará para nossa base de dados e será enviado para as autoridades responsáveis.
+      Veja abaixo um mapa com os registros de nossa comunidade:
+    </p>
+      </div>
+      <div class="col-md">
+        <div id="map" class="map"></div>
+      </div>
+    </div> 
+  </div>
+</div>
+  
+
+
+
+
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp_GfKTh7jDVzfNW5aPuUb1RxlG6oNHls"></script>
+  <script type="text/javascript" src="/javascripts/main.js"></script>
