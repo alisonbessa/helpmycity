@@ -12,8 +12,46 @@
 <br>
 <br>
 
+
+
+<div class="content form btn-secondary">
+  <p align="center" class="col-form-label"><strong>Nova Postagem</strong></p>
+  <form action="/edit/{{report.id}}" method="post" enctype="multipart/form-data">
+
+    <label class="col-form-label" name="category" value="{{report.category}}">Categoria:</label>
+      <select name="category" class="form-control">
+        <option value="Iluminação - Item 01">Iluminação - Item 01</option>
+        <option value="Iluminação - Item 02">Iluminação - Item 02</option>
+        <option value="Iluminação - Item 03">Iluminação - Item 03</option>
+        <option value="Iluminação - Item 04">Iluminação - Item 04</option>
+        <option value="Saneamento - Item 01">Saneamento - Item 01</option>
+        <option value="Saneamento - Item 02">Saneamento - Item 02</option>
+        <option value="Saneamento - Item 03">Saneamento - Item 03</option>
+        <option value="Saneamento - Item 04">Saneamento - Item 04</option>
+      </select>
+    <br>
+
+    <label  class="form-group">Rua:</label>
+      <input type="text" name="street" value="{{report.location.street}}" class="form-control">
+
+    <label>Número:</label>
+      <input type="text" name="number" value="{{report.location.number}}" class="form-control">
+
+    <label>Cidade:</label>
+      <input type="text" name="city" value="{{report.location.city}}" class="form-control">
+
+    <label>Descrição:</label>
+      <input type="text" name="description" value="{{report.description}}" class="form-control">
+
+    <br>
+    <button type="submit" class="btn btn-sm btn-block btn-dark">Editar postagem!</button>
+  </form>
+
+</div>
+
+{{!-- 
 <div class="content">
-  <div class"form-group">
+  <div class="form-group">
     <h2>Editar publicação</h2>
     <form action="/edit/{{report.id}}" method="post">
       
@@ -30,7 +68,7 @@
         </select>
       </label><br>
 
-      <label  class="form-group">Endereço:
+      <label  class="form-group">Rua:
         <input type="text" name="street" value="{{report.location.street}}" class="form-control">
       </label>
 
@@ -41,7 +79,6 @@
       <label>Cidade:
         <input type="text" name="city" value="{{report.location.city}}" class="form-control">
       </label>
-
 
       <label>Descrição:
         <input type="text" name="description" value="{{report.description}}" class="form-control">
@@ -56,4 +93,4 @@
       <button type="submit" class="btn btn-dark">Alterar</button>
     </form>
   </div>
-</div>
+</div> --}}
