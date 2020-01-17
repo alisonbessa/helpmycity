@@ -9,45 +9,42 @@
 </nav>
 
 <br>
-<div class="content container">
-  <p>Estas são suas contribuições:</p>
+
+<div class="content">
+  <span>Estas são suas contribuições. Clique sobre uma delas para mais opções:</span>
+  <hr>
   <div class="row align-items-center">
     {{#each reports}}      
       <div class="col-12 col-md-6 col-lg-4">
-        <a href="/details/{{_id}}" class="btn btn-block btn-dark" role="button" data-toggle="modal" data-target="#exampleModalCenter">
+        <button type="button"class="btn btn-block btn-dark" role="button" data-toggle="modal" data-target="#exampleModalCenter">
           <strong>Tipo:</strong> {{this.category}}<br>
-          <strong>Local:</strong> {{location.street}}<br>
-        </a><br>
+          <strong>Local:</strong> {{location.street}}
+        </button><br>
       </div>
+      <br>
+      <!-- Modal -->
+      <div class="modal modal-sms fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <p class="modal-title text-center" id="exampleModalLongTitle">O que deseja?</p>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-footer">
+              <a href="/details/{{_id}}" role="button" class="btn btn-info">Detalhes</a>
+              <a href="/edit/{{_id}}" role="button" class="btn btn-warning">Editar</a> 
+              <a href="/delete-report/{{_id}}" role="button" class="btn btn-danger">Excluir</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
     {{/each}}
   </div>
-</div>
+</div> 
 
 
 
-<!-- Button trigger modal -->
-{{!-- <button type="button" class="btn btn-block btn-dark" role="button" data-toggle="modal" data-target="#exampleModalCenter">
-  Launch demo modal
-</button> --}}
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
   
