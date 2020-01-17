@@ -16,12 +16,12 @@
   <div class="row align-items-center">
     {{#each reports}}      
       <div class="col-12 col-md-6 col-lg-4">
-        <button type="button"class="btn btn-block btn-dark" role="button" data-toggle="modal" data-target="#exampleModalCenter">
+        <button type="button"class="btn btn-block btn-dark" data-toggle="modal" data-target="#exampleModalCenter">
           <strong>Tipo:</strong> {{this.category}}<br>
           <strong>Local:</strong> {{location.street}}
         </button><br>
       </div>
-      <br>
+
       <!-- Modal -->
       <div class="modal modal-sms fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
