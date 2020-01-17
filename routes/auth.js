@@ -110,11 +110,11 @@ router.post("/allreports", (req, res, next) => {
 });
 
 // DETAILS ROUTE
-router.get("/details/:id", (req, res) => {
+router.get("/details/:id", (req, res, next) => {
   const { id } = req.params;
   Reports.findById(id)
     .then(report => {
-      User.findById(reportowner_ID)
+      User.findById(report.owner_ID)
       .then(nameOfUser => {
         res.render("details", {report, nameOfUser });
       })
@@ -127,7 +127,7 @@ router.get("/details/:id", (req, res) => {
 
 // DASHBOARD ROUTE
 router.get("/dashboard", ensureAuthenticated, (req, res, next) => {
-  Reports.find({ owner_ID: req.user._id })
+  Report.find({ owner_ID: req.user._id })
     .sort({ category: 1 })
     .then(reports => res.render("dashboard", { user: req.user, reports }));
 });
