@@ -8,7 +8,7 @@ const flash = require("connect-flash");
 const cloudinary = require("cloudinary").v2.api;
 
 const ensureLogin = require("connect-ensure-login");
-// const localStrategy = require('passport-local').Strategy;
+const localStrategy = require('passport-local').Strategy;
 
 const router = express.Router();
 
@@ -203,9 +203,6 @@ router.post("/new-report", [ensureAuthenticated, uploadCloud.single("picture")],
           GPSLongitude,
           GPSLongitudeRef
         } = response.exif;
-
-        let cloudlatOfPhoto   = 00;
-        let cloudlongOfPhoto  = 00;
         
         cloudlatOfPhoto = GPSLatitude.split("").join('').split("/100").join('').split("/1").join('').split(", ");
         cloudlongOfPhoto = GPSLongitude.split("").join('').split("/100").join('').split("/1").join('').split(", ");
@@ -242,12 +239,12 @@ router.post("/new-report", [ensureAuthenticated, uploadCloud.single("picture")],
             street,
             number,
             city,
-            userlat: 00 /* user_location.lat  ------------FUTURA IMPLEMENTAÇÃO*/,
-            userlong: 00 /* user_location.long -----------FUTURA IMPLEMENTAÇÃO*/,
-            latOfStreet: 00 /* geolatOfStreet --------FUTURA IMPLEMENTAÇÃO*/,
-            longOfStreet: 00 /* geologOfStreet -------FUTURA IMPLEMENTAÇÃO*/,
+            userlat: 00,                          /* user_location.lat  -------FUTURA IMPLEMENTAÇÃO*/
+            userlong: 00,                         /* user_location.long -------FUTURA IMPLEMENTAÇÃO*/
+            latOfStreet: 00,                      /* geolatOfStreet     -------FUTURA IMPLEMENTAÇÃO*/
+            longOfStreet: 00,                     /* geologOfStreet     -------FUTURA IMPLEMENTAÇÃO*/
             latOfPhoto: cloudlatOfPhoto,
-            longOfPhoto: cloudlongOfPhoto,
+            longOfPhoto: cloudlongOfPhoto
           },
           category,
           picture,
