@@ -1,14 +1,13 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
   <div class="navbar-nav mr-auto">
     <a class="nav-item nav-link" href="/">Início</a>
-  </div>
-  <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link" href="/login">Entrar</a>
+    <a class="nav-item nav-link" href="/login">Postagens</a>
   </div>
 </nav>
 
+<br>
 
-<div class="details content">
+<div class="content">
     <br>
     <h2>Detalhes</h2>
     <hr>
@@ -17,38 +16,12 @@
         <span>{{report.location.street}},{{report.location.number}}</span>
         <br>{{report.location.city}}<hr>
     <strong>Descrição</strong><br>
-    {{report.description}}
+    {{report.description}}<br>
+
+    <hr>
     <figure>
-        <img class="rounded-lg border mx-auto d-block" src="{{report.picture}}" alt="">
+        <strong>Imagem</strong>
+        <img class="img-fluid rounded-lg border mx-auto d-block" src="{{report.picture}}" alt="">
     </figure>    
 
 </div>
-
-{{!-- 
-const reportsSchema = new Schema ({
-    owner_ID : Schema.Types.ObjectId,
-    location: {
-        street: String,
-        number: Number,
-        city: String,
-        lat: Number,
-        long: Number,
-    },
-    category: {
-        type: String,
-        enum: [
-            "Iluminação - Item 01",
-            "Iluminação - Item 02",
-            "Iluminação - Item 03",
-            "Iluminação - Item 04",
-            "Saneamento - Item 01",
-            "Saneamento - Item 02",
-            "Saneamento - Item 03",
-            "Saneamento - Item 04",
-        ]
-    },
-    picture: String,
-    description: String,
-    status: { type: Boolean, default: false },
-
-       --}}

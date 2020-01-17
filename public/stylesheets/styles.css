@@ -26,6 +26,11 @@ img{
     max-height: 80vh;
     margin: auto;
 }
+.form{
+    max-width: 500px;
+    padding: 5px 10px;
+    margin: 10px;
+}
 .content{
     padding: 10px;  
     height: auto;
@@ -36,10 +41,9 @@ img{
 
 .divForm{
     padding: 10px;  
-    background-color: #a5c4e6;
     color:#343a40 ;
     height: auto;
+    max-width: 300px;
     margin: auto;
-    margin-top: 20px;
     border-radius: 6px;
 };
