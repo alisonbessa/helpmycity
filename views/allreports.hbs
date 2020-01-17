@@ -1,42 +1,42 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
   <div class="navbar-nav mr-auto">
-    <a class="nav-item nav-link" href="/">Início</a>
+    <a class="nav-item nav-link" href="/allreports">Início</a>
   </div>
   <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link" href="/login">Entrar</a>
+    <a class="nav-item nav-link" href="/login">Entrar</a>    
   </div>
 </nav>
 
 <br>
+<br>
+
 <div class="content">
-  <div class="">
-    <form action="/allreports/{{report.category}}" method="post"> 
-      <label>
-        <select name="category" value="" class="form-control">
-          <option value="">Selecione uma categoria</option>
-          <option value="Iluminação - Item 01">Iluminação - Item 01</option>
-          <option value="Iluminação - Item 02">Iluminação - Item 02</option>
-          <option value="Iluminação - Item 03">Iluminação - Item 03</option>
-          <option value="Iluminação - Item 04">Iluminação - Item 04</option>
-          <option value="Saneamento - Item 01">Saneamento - Item 01</option>
-          <option value="Saneamento - Item 02">Saneamento - Item 02</option>
-          <option value="Saneamento - Item 03">Saneamento - Item 03</option>
-          <option value="Saneamento - Item 04">Saneamento - Item 04</option>
-        </select>
-      </label>
-      <button type="submit" class="btn btn-md btn-dark">Buscar</button>
-    </form> 
-  </div>
+  <form action="/allreports/{{report.category}}" method="post"> 
+    <label>
+      <select name="category" value="" class="form-control">
+        <option value="">Selecione uma categoria</option>
+        <option value="Iluminação - Item 01">Iluminação - Item 01</option>
+        <option value="Iluminação - Item 02">Iluminação - Item 02</option>
+        <option value="Iluminação - Item 03">Iluminação - Item 03</option>
+        <option value="Iluminação - Item 04">Iluminação - Item 04</option>
+        <option value="Saneamento - Item 01">Saneamento - Item 01</option>
+        <option value="Saneamento - Item 02">Saneamento - Item 02</option>
+        <option value="Saneamento - Item 03">Saneamento - Item 03</option>
+        <option value="Saneamento - Item 04">Saneamento - Item 04</option>
+      </select>
+    </label>
+    <button type="submit" class="btn btn-md btn-dark">Buscar</button>
+  </form> 
   <hr>
 
-<div class="row align-items-center">
-  {{#each reports}}      
-    <div class="col-12 col-md-6 col-lg-4">
-      <a href="/details/{{_id}}" class="btn btn-block btn-dark" role="button">
-        <strong>Tipo:</strong> {{this.category}}<br>
-        <strong>Local:</strong> {{location.street}}<br>
-      </a><br>
-    </div>
-  {{/each}}
-
+  <div class="row align-items-center">
+    {{#each reports}}      
+      <div class="col-12 col-md-6 col-lg-4">
+        <a href="/details/{{_id}}" class="btn btn-block btn-dark" role="button">
+          <strong>Tipo:</strong> {{this.category}}<br>
+          <strong>Local:</strong> {{location.street}}<br>
+        </a><br>
+      </div>
+    {{/each}}
+  </div>
 </div>
