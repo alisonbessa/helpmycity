@@ -15,14 +15,14 @@
     <label>
       <select name="category" value="" class="form-control">
         <option value="">Selecione uma categoria</option>
-        <option value="Iluminação - Item 01">Iluminação - Item 01</option>
-        <option value="Iluminação - Item 02">Iluminação - Item 02</option>
-        <option value="Iluminação - Item 03">Iluminação - Item 03</option>
-        <option value="Iluminação - Item 04">Iluminação - Item 04</option>
-        <option value="Saneamento - Item 01">Saneamento - Item 01</option>
-        <option value="Saneamento - Item 02">Saneamento - Item 02</option>
-        <option value="Saneamento - Item 03">Saneamento - Item 03</option>
-        <option value="Saneamento - Item 04">Saneamento - Item 04</option>
+        <option value="Rede de Água">Rede de Água</option>
+        <option value="Rede de Esgoto">Rede de Esgoto</option>
+        <option value="Rede Elétrica">Rede Elétrica</option>
+        <option value="Iluminação da via">Iluminação da via</option>
+        <option value="Calçadas">Calçadas</option>
+        <option value="Via pública">Via pública</option>
+        <option value="Pessoas">Pessoas</option>
+        <option value="Outros">Outros</option>
       </select>
     </label>
     <button type="submit" class="btn btn-md btn-dark">Buscar</button>
@@ -34,7 +34,7 @@
       <div class="col-12 col-md-6 col-lg-4">
         <a href="/details/{{_id}}" class="btn btn-block btn-dark" role="button">
           <strong>Tipo:</strong> {{this.category}}<br>
-          <strong>Local:</strong> {{location.street}}<br>
+          <strong>Local:</strong> {{address.street}}<br>
         </a><br>
       </div>
     {{/each}}

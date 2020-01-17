@@ -16,81 +16,36 @@
 
 <div class="content form btn-secondary">
   <p align="center" class="col-form-label"><strong>Nova Postagem</strong></p>
-  <form action="/edit/{{report.id}}" method="post" enctype="multipart/form-data">
-
+  <form action="/edit/{{report.id}}" method="post" >
     <label class="col-form-label" name="category" value="{{report.category}}">Categoria:</label>
       <select name="category" class="form-control">
-        <option value="Iluminação - Item 01">Iluminação - Item 01</option>
-        <option value="Iluminação - Item 02">Iluminação - Item 02</option>
-        <option value="Iluminação - Item 03">Iluminação - Item 03</option>
-        <option value="Iluminação - Item 04">Iluminação - Item 04</option>
-        <option value="Saneamento - Item 01">Saneamento - Item 01</option>
-        <option value="Saneamento - Item 02">Saneamento - Item 02</option>
-        <option value="Saneamento - Item 03">Saneamento - Item 03</option>
-        <option value="Saneamento - Item 04">Saneamento - Item 04</option>
+        <option value="Rede de Água">Rede de Água</option>
+        <option value="Rede de Esgoto">Rede de Esgoto</option>
+        <option value="Rede Elétrica">Rede Elétrica</option>
+        <option value="Iluminação da via">Iluminação da via</option>
+        <option value="Calçadas">Calçadas</option>
+        <option value="Via pública">Via pública</option>
+        <option value="Pessoas">Pessoas</option>
+        <option value="Outros">Outros</option>
       </select>
     <br>
 
     <label  class="form-group">Rua:</label>
-      <input type="text" name="street" value="{{report.location.street}}" class="form-control">
+      <input type="text" name="street" value="{{report.address.street}}" class="form-control">
 
     <label>Número:</label>
-      <input type="text" name="number" value="{{report.location.number}}" class="form-control">
+      <input type="text" name="number" value="{{report.address.number}}" class="form-control">
 
     <label>Cidade:</label>
-      <input type="text" name="city" value="{{report.location.city}}" class="form-control">
+      <input type="text" name="city" value="{{report.address.city}}" class="form-control">
 
     <label>Descrição:</label>
       <input type="text" name="description" value="{{report.description}}" class="form-control">
 
     <br>
+      <input type="hidden" name="latitude" id="placeLatitude" placeholder="latitude">
+      <input type="hidden" name="longitude" id="placeLongitude" placeholder="longitude">
     <button type="submit" class="btn btn-sm btn-block btn-dark">Editar postagem!</button>
   </form>
 
 </div>
-
-{{!-- 
-<div class="content">
-  <div class="form-group">
-    <h2>Editar publicação</h2>
-    <form action="/edit/{{report.id}}" method="post">
-      
-      <label>Categoria:
-        <select name="category" value="{{report.category}}" class="form-control">
-          <option value="Iluminação - Item 03">Iluminação - Item 01</option>
-          <option value="Iluminação - Item 02">Iluminação - Item 02</option>
-          <option value="Iluminação - Item 01">Iluminação - Item 03</option>
-          <option value="Iluminação - Item 04">Iluminação - Item 04</option>
-          <option value="Saneamento - Item 01">Saneamento - Item 01</option>
-          <option value="Saneamento - Item 02">Saneamento - Item 02</option>
-          <option value="Saneamento - Item 03">Saneamento - Item 03</option>
-          <option value="Saneamento - Item 04">Saneamento - Item 04</option>
-        </select>
-      </label><br>
-
-      <label  class="form-group">Rua:
-        <input type="text" name="street" value="{{report.location.street}}" class="form-control">
-      </label>
-
-      <label>Número:
-        <input type="text" name="number" value="{{report.location.number}}" class="form-control">
-      </label>
-
-      <label>Cidade:
-        <input type="text" name="city" value="{{report.location.city}}" class="form-control">
-      </label>
-
-      <label>Descrição:
-        <input type="text" name="description" value="{{report.description}}" class="form-control">
-      </label>
-
-      {{!-- <label>Foto:
-        <input type="file" name="picture">
-      </label> --}}
-      <br>
-      <input type="hidden" name="latitude" id="placeLatitude" placeholder="latitude">
-      <input type="hidden" name="longitude" id="placeLongitude" placeholder="longitude">
-      <button type="submit" class="btn btn-dark">Alterar</button>
-    </form>
-  </div>
-</div> --}}
