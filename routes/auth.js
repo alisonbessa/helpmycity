@@ -187,7 +187,7 @@ router.get("/new-report", ensureAuthenticated, (req, res, next) => {
   res.render("new-report");
 });
 
-router.post("/new-report", [ensureAuthenticated, uploadCloud.single("picture")], (req, res, next) => {
+router.post("/new-report", ensureAuthenticated, uploadCloud.single("picture"), (req, res, next) => {
     const { street, number, city, category, description } = req.body;
     const picture = req.file.url;
     let cloudlatOfPhoto = 00;
