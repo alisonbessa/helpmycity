@@ -44,7 +44,7 @@ module.exports = Reports;
 
 
 
-
+/*  APAGAR
 
 
 // const mongoose = require('mongoose');
@@ -63,4 +63,4 @@ const placeSchema = new Schema(
 );
 
 
-// module.exports = Places;
+// module.exports = Places; */
