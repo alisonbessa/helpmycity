@@ -12,12 +12,12 @@ router.get('/', (req, res, next) => {
 });
 
 
-// router.get('/allreports', (req, res, next) => {
-//     res.render('allreports');
-// });
 
-// router.get('/details', (req, res, next) => {
-//     res.render('details');
-// });
+router.get('/api', (req, res, next) => {
+    Report.find()
+    .then(reports => res.json(reports))
+    .catch(error => console.log(error))
+});
+
 
 module.exports = router;
