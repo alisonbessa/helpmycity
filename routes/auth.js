@@ -155,7 +155,7 @@ router.post("/edit/:id", ensureAuthenticated, (req, res, next) => {
     category,
     description
   };
-
+ 
   Report.findByIdAndUpdate(id, newReport)
     .then(_ => res.redirect("/dashboard"))
     .catch(error => next(error));
