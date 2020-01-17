@@ -98,16 +98,14 @@ router.get("/allreports", (req, res, next) => {
 router.post("/allreports", (req, res, next) => {
   Reports.find({ category: req.body.category })
     .then(reports => {
-      if (reports) {
+      if (reports.length > 0) {
         res.render("allreports", { reports });
         return;
       } else {
         req.flash("error", "");
-        req.flash("error", "jgsdhjvhsghdfgsdgufgjshfg");
-        res.redirect("/allreports", { message: req.flash("error") });
+        res.render("allreports", { message: req.flash("error") });
         return;
       }
-      // res.send(reports)
     })
     .catch(error => console.log(error));
 });
@@ -235,7 +233,8 @@ router.post("/new-report", [ensureAuthenticated, uploadCloud.single("picture")],
         }
         const newReport = new Reports({
           owner_ID: req.user._id,
-          location: {
+          location: {name: category, type: "Point", coordinates: [cloudlatOfPhoto,cloudlongOfPhoto]},
+          address: {
             street,
             number,
             city,
@@ -244,7 +243,7 @@ router.post("/new-report", [ensureAuthenticated, uploadCloud.single("picture")],
             latOfStreet: 00,                      /* geolatOfStreet     -------FUTURA IMPLEMENTAÇÃO*/
             longOfStreet: 00,                     /* geologOfStreet     -------FUTURA IMPLEMENTAÇÃO*/
             latOfPhoto: cloudlatOfPhoto,
-            longOfPhoto: cloudlongOfPhoto
+            longOfPhoto: cloudlongOfPhoto,
           },
           category,
           picture,

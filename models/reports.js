@@ -4,7 +4,8 @@ const Schema      = mongoose.Schema;
 const reportsSchema = new Schema(
   {
     owner_ID: Schema.Types.ObjectId,
-    location: {
+    location: {name:String, type: { type: String }, coordinates: [Number] },
+    address: {
       street: String,
       number: String,
       city: String,
