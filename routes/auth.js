@@ -157,7 +157,7 @@ router.post('/edit/:id', ensureAuthenticated, (req, res, next) => {
   const { id } = req.params;
   const { street, number, city, category, description } = req.body;
   const newReport = {
-    location: {
+    address: {
       street,
       number,
       city,
@@ -165,7 +165,6 @@ router.post('/edit/:id', ensureAuthenticated, (req, res, next) => {
     category,
     description,
   }
-
   Report.findByIdAndUpdate(id, newReport)
     .then(_ => res.redirect('/dashboard'))
     .catch(error => next(error))
