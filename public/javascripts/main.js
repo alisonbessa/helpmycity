@@ -1,3 +1,5 @@
+/* Sera que vai 2?*/
+
 function startMap() {
 
   // São Paulo's coordinates

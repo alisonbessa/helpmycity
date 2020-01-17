@@ -5,6 +5,8 @@ const Reports = require('../models/reports');
 
 const router = express.Router();
 
+/* Sera que vai 2?*/
+
 // router.get('auth/new-report', (req, res, next) => {
 //     res.render('new-report');
 // });

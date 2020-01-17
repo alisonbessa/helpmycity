@@ -8,6 +8,8 @@ const flash       = require('connect-flash');
 const cloudinary  = require("cloudinary").v2.api
 
 
+/* Sera que vai 2?*/
+
 const ensureLogin = require("connect-ensure-login");
 // const localStrategy = require('passport-local').Strategy;
 
@@ -49,16 +51,15 @@ router.post('/signup', (req, res, next) => {
         password: hashPass
       });
 
-      newUser.save((err) => {
-        if (err) {
-          res.render('signup', {
-            message: 'Não foi possível efetivar o cadastro'
-          });
-        } else {
-          res.redirect('/login');
-        }
-      });
-      res.render('login');
+
+    newUser.save(err => {
+      if (err) {
+        res.render("signup", {
+          message: "Não foi possível efetivar o cadastro"
+        });
+      } else {
+        res.redirect("/login");
+      }
     });
 });
 
